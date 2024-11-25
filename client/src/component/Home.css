@@ -1,0 +1,131 @@
+/* src/Home.css */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden; /* Prevents scrolling */
+}
+
+/* Left side - full screen image */
+.image-section {
+  flex: 1;
+  background-image: url("C:\Users\hp\Downloads\business-people-meeting-modern-office-interior-businessmen-businesswomen-sitting-table-discussing-project-vector-illustration-flat-style-ai-generated_538213-21963.avif"); /* replace with your image path */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Right side - login form */
+.form-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  width: 380px; /* Reduced width */
+  padding: 30px;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  width: 100%;
+  max-width: 340px; /* Maximum width for the form container */
+  text-align: center;
+}
+
+.welcome-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Adjusted form container for smaller spacing */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Compact form fields */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+/* Label styling */
+label {
+  font-weight: bold;
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+/* Smaller input styling */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  padding: 8px; /* Reduced padding */
+  font-size: 14px; /* Reduced font size */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+/* Add focus effect */
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+  border-color: #4a3dbf;
+  box-shadow: 0 0 4px rgba(74, 61, 191, 0.2);
+}
+
+/* Error message styling */
+.text-danger {
+  color: red;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+/* Smaller submit button */
+.button {
+  padding: 10px;
+  font-size: 14px;
+  background-color: #4a3dbf;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #3a2f9e;
+}
+
+/* Add margin to the toggle button to create space */
+.toggle-button {
+  margin-top: 10px; /* Adjust this value as needed for spacing */
+}
+.form-control {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.form-control select {
+  height: 100%; /* Ensures the dropdown has a similar height as other fields */
+}
