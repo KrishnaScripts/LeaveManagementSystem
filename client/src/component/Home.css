@@ -15,7 +15,7 @@ body {
 /* Left side - full screen image */
 .image-section {
   flex: 1;
-  background-image: url("C:\Users\hp\Downloads\business-people-meeting-modern-office-interior-businessmen-businesswomen-sitting-table-discussing-project-vector-illustration-flat-style-ai-generated_538213-21963.avif"); /* replace with your image path */
+  background-image: url("D:\DOWNLOADS OLD\business-people-meeting-modern-office-interior-businessmen-businesswomen-sitting-table-discussing-project-vector-illustration-flat-style-ai-generated_538213-21963.avif"); /* replace with your image path */
   background-size: cover;
   background-position: center;
 }

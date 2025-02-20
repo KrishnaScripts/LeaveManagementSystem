@@ -5,11 +5,16 @@ import './Home.css';
 import { registration } from '../services/auth.service'; 
 import { IUserLogin,IUser } from "../types/user.type";
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Home = () => {
   const navigate = useNavigate();
 
   const [isSignUp, setIsSignUp] = useState(false);
   const [error,setError] =useState('');
+
+  const loginToastify = () => toast.error("Login Fail!");
+  const loginSuccess = () => toast.error("Login Successfully!");
  
 
   const Values = {
@@ -34,18 +39,18 @@ const Home = () => {
 
 
   const signInValidationForm = Yup.object({
-    // email: Yup.string().email('Invalid email address').required('Email is Required'),
-    // password: Yup.string().min(6, 'Must be at least 6 characters').required('Password is Required'),
+    email: Yup.string().email('Invalid email address').required('Email is Required'),
+    password: Yup.string().min(6, 'Must be at least 6 characters').required('Password is Required'),
   });
   const signUpValidationForm = Yup.object({
-    // firstName: Yup.string().required('First Name is required'),
-    // lastName: Yup.string().required('Last Name is required'),
-    // email: Yup.string().email('Invalid email address').required('Email is required'),
-    // phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Phone number must be 10 digits').required('Phone number is required'),
-    // password: Yup.string().min(6, 'Must be at least 6 characters').required('Password is required'),
-    // confirmPassword: Yup.string()
-    //   .oneOf([Yup.ref('password'), undefined], 'Passwords must match')
-    //   .required('Confirm password is required'),
+    firstName: Yup.string().required('First Name is required'),
+    lastName: Yup.string().required('Last Name is required'),
+    email: Yup.string().email('Invalid email address').required('Email is required'),
+    phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Phone number must be 10 digits').required('Phone number is required'),
+    password: Yup.string().min(6, 'Must be at least 6 characters').required('Password is required'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), undefined], 'Passwords must match')
+      .required('Confirm password is required'),
   });
 
   const handleSubmit = async(formValue:IUserLogin,{ resetForm }: any)=>{
@@ -55,12 +60,14 @@ const Home = () => {
    const userDatamatch = userDatabackend ?  JSON.parse(userDatabackend) : null;
     if(userDatamatch.email == email && userDatamatch.confirmPassword == password ){
       if(userDatamatch.role === 'Admin'){
+        loginSuccess();
         navigate('/adminDashboard')
       }else{
+        loginSuccess();
         navigate('/landingPage');
       }
     }else{
-      alert("Login Failed!");
+      loginToastify();
     }
     resetForm();
     
@@ -74,7 +81,7 @@ const Home = () => {
           console.log(response,"user")
           localStorage.setItem('userData',JSON.stringify(user));  
           resetForm();
-          setIsSignUp((prev) => !prev);         
+          setIsSignUp((prev) => !prev); 
         }
       )
 
@@ -172,6 +179,7 @@ const Home = () => {
         <button className="button toggle-button" onClick={toggleForm}>
           {isSignUp ? 'Already have an account? Sign In' : 'Don’t have an account? Sign Up'}
         </button>
+        <ToastContainer />
       </div>
     </div>
   </div>

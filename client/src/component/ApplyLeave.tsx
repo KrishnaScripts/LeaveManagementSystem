@@ -26,19 +26,19 @@ const ApplyLeave = () => {
         todate: Yup.date().min(Yup.ref('fromdate'), 'To date cannot be before From date').required('To date is required'),
     });
 
-    const calculateWorkingDays = async(formValue:IuserLeave) => {
-        const{fromdate,todate,leavereason,leavetype,employeeName} = formValue;
-        
-        try{
-            await applyLeave(fromdate,todate,leavereason,leavetype,employeeName).then(
-              (response)=>{
+    const calculateWorkingDays = async (formValue: IuserLeave, { resetForm }: any) => {
+        const { fromdate, todate, leavereason, leavetype, employeeName } = formValue;
+    
+        try {
+            await applyLeave(fromdate, todate, leavereason, leavetype, employeeName).then((response) => {
                 setWorkingDays(response.data.workingDays);
-              }
-            )    
-          }catch(err:any){
+                resetForm(); // Reset form fields after successful submission
+            });
+        } catch (err: any) {
             setError(err.message);
-          }
+        }
     };
+    
 
     return(
         <>

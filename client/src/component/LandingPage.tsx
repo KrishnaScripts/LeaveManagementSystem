@@ -6,6 +6,8 @@ import { IUser } from '../types/user.type';
 import { updateUser } from '../services/auth.service';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LandingPage = () => {
   const userDatabackend = localStorage.getItem('userData');  
@@ -14,7 +16,7 @@ const LandingPage = () => {
   const userProfileData = localStorage.getItem('userProfileData');
   const userProfileDatanew = userProfileData ? JSON.parse(userProfileData) : null;
   
-
+  const notify = () => toast.success("Data updated successfully!");
  
 
   const initialValues: IUser = {
@@ -76,21 +78,20 @@ const LandingPage = () => {
             userObject.phoneNumber = data.phoneNumber;
 
             const myprofile = {
-              jobtitle : data.jobtitle,
-              dob : data.dob, 
-              gender: data.gender, 
-              maritalStatus: data.maritalStatus,
-              personalEmail: data.personalEmail,
-              address:data.address,
-              department:data.department,
-              doj:data.doj,
-              employeementType:data.employeementType
+              jobtitle : data?.jobtitle,
+              dob : data?.dob, 
+              gender: data?.gender, 
+              maritalStatus: data?.maritalStatus,
+              personalEmail: data?.personalEmail,
+              address:data?.address,
+              department:data?.department,
+              doj:data?.doj,
+              employeementType:data?.employeementType
             }
             localStorage.setItem('userData', JSON.stringify(userObject));
             localStorage.setItem('userProfileData', JSON.stringify(myprofile));
-
+            notify();
             
-            alert("Data Update Sucessfully!");
           }else{
             console.error('No user data found in localStorage.');
           }
@@ -125,9 +126,9 @@ const LandingPage = () => {
               style={{ display: 'none' }} 
             />
             <div className="profile-details">
-              <p>{userDatamatch.firstName || 'First Name'}</p>
-              <p>{userDatamatch.lastName || 'Last Name'}</p>
-              <p>{userDatamatch.department || 'IT'}</p>
+              <p>{userDatamatch?.firstName || 'First Name'}</p>
+              <p>{userDatamatch?.lastName || 'Last Name'}</p>
+              <p>{userDatamatch?.department || 'IT'}</p>
             </div>
           </div>
           <div className="profile-card">
@@ -250,6 +251,7 @@ const LandingPage = () => {
 
                 </div>
                 <button type="submit" className="button">Update</button>
+                <ToastContainer />
               </Form>
             )}
             
